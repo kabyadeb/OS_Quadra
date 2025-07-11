@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <pthread.h>
 
-void* print_message(void* arg) {
+void* print_message() {
     printf("Hello from thread!\n");
     return NULL;
 }

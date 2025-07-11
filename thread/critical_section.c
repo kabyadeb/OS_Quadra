@@ -3,24 +3,30 @@
 #include <unistd.h>
 
 int counter = 0; // 🟡 Global shared variable
-pthread_mutex_t lock;
+// pthread_mutex_t lock;
 
-void* increment(void* arg) {
-    for (int i = 0; i < 10; i++) {
+void* increment() {
+  printf("Thread running on CPU: %d\n", sched_getcpu());
+    for (int i = 0; i < 1000000; i++) {
       // pthread_mutex_lock(&lock);
         counter++;  // 🔥 Critical section
+        // usleep(100);
+        // sleep(1);
         // pthread_mutex_unlock(&lock);
-        printf("%d\n",counter);
+        printf("Thread1: %d\n",counter);
     }
     return NULL;
 }
 
-void* decrement(void* arg) {
-    for (int i = 0; i < 10; i++) {
+void* decrement() {
+  printf("Thread running on CPU: %d\n", sched_getcpu());
+    for (int i = 0; i < 1000000; i++) {
       // pthread_mutex_lock(&lock);
         counter--;  // 🔥 Critical section
+        // usleep(100);
+        // sleep(1);
         // pthread_mutex_unlock(&lock);
-         printf("%d\n",counter);
+         printf("Thread 2: %d\n",counter);
     }
     return NULL;
 }

@@ -5,7 +5,7 @@
 #include <string.h>
 
 int main() {
-    int fd = open("myfifo", O_WRONLY);
+    int fd = open("name_pipe", O_WRONLY);
     char message[] = "Hello from writer!";
     write(fd, message, strlen(message) + 1);
     close(fd);

@@ -21,7 +21,7 @@ int main() {
     } else {
         // Parent process: Write
         close(fd[0]); // Close read end
-        write(fd[1], message, strlen(message) + 1);
+        write(fd[1], message, strlen(message));
     }
 
     return 0;
