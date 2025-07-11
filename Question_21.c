@@ -16,6 +16,11 @@ sequence until the child thread finishes, the parent thread will have to wait fo
 the child thread to finish.
 */
 
+/*
+    gcc Question_21.c -o fib_thread -pthread
+    ./fib_thread 10
+*/
+
 
 #include <stdio.h>
 #include <stdlib.h>
