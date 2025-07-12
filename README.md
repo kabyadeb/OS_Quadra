@@ -1,4 +1,12 @@
 # OS_Quadra
+## Find Docs By Using man
+```
+man pipe
+man shmget
+man msgget
+man fork
+man read
+```
 | Section | Description                                       |
 | ------- | ------------------------------------------------- |
 | 1       | User commands (`ls`, `grep`, etc.)                |
