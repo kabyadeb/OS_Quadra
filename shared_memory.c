@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include<unistd.h>
 #include<sys/wait.h>
+
 int main(){
   key_t key =1234;
   int shmid=shmget(key,sizeof(int),0666|IPC_CREAT);

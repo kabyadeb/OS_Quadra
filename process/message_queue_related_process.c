@@ -35,6 +35,13 @@ char msg[100];
 * ssize_t msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg);
 * msgtyp	The mtype you want to receive (or 0 to receive any)
 * msgflg	Flags like 
+*
+* int msgctl(int msqid, int cmd, struct msqid_ds *buf); 
+* msqid	The message queue ID returned by msgget()
+* cmd	The command to perform on the queue
+* buf	A pointer to a struct msqid_ds, used to get/set queue info
+* IPC_RMID	Remove the message queue
+* buf is not needed → pass NULL
 */
 
 int main(){

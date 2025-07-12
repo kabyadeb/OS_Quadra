@@ -84,3 +84,64 @@ The value 0666 is a Unix file permission mode, written in octal (base-8).
 0600 = rw------- (only owner can read/write)
 
 0777 = rwxrwxrwx (read/write/execute for all — not used for IPC)
+
+
+
+# What is Shared Memory?
+
+Shared memory allows multiple processes to access the same region of memory. It is:
+
+   - Allocated by the kernel
+
+   - Mapped into the address space of processes
+
+   - Very fast (no kernel-user data copy overhead like pipes/message queues)
+
+   - Must be synchronized manually (with semaphores, mutexes, etc.)
+  
+  
+#  How Shared Memory Works (System V)
+
+| Function   | Purpose                                             |
+| ---------- | --------------------------------------------------- |
+| `shmget()` | Create or get a shared memory segment               |
+| `shmat()`  | Attach the shared memory to process's address space |
+| `shmdt()`  | Detach shared memory from the process               |
+| `shmctl()` | Control shared memory (e.g., delete it)             |
+
+
+# System Call Details
+
+1. `int shmget(key_t key, size_t size, int shmflg);`
+
+   - Creates or accesses a shared memory segment.
+
+   - key: Unique identifier (use ftok() or constant)
+
+   - size: Size in bytes
+
+   - shmflg: Flags and permissions (e.g., IPC_CREAT | 0666)
+   
+ 2. `void* shmat(int shmid, const void *shmaddr, int shmflg);`
+
+   - Attaches the shared memory segment to your process's address space.
+
+   - Returns a pointer to the shared memory.
+
+3. `int shmdt(const void *shmaddr);`
+
+    - Detaches the shared memory from your process.
+
+
+4. `int shmctl(int shmid, int cmd, struct shmid_ds *buf);`
+
+    - Used to control or delete the shared memory.
+
+   -  Common commands:
+```
+        IPC_RMID: Remove the shared memory segment
+
+        IPC_STAT: Get info
+
+        IPC_SET: Set info
+```
